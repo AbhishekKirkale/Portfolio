@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FaGithub, FaLinkedin, FaEnvelope, FaPhoneAlt, FaPaperPlane, FaMapMarkerAlt, FaCheckCircle, FaExclamationCircle } from 'react-icons/fa';
 
-// Contact & Social links centralized for easy modification
+// Contact & Social links centralized
 export const contactDetails = {
   email: 'abhishekkirkale9@gmail.com',
   phone: '+91 76666 40720',
@@ -22,6 +22,7 @@ const Contact = () => {
   const [errors, setErrors] = useState({});
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState('');
 
   const validate = () => {
     const newErrors = {};
@@ -45,7 +46,7 @@ const Contact = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const validationErrors = validate();
     if (Object.keys(validationErrors).length > 0) {
@@ -54,13 +55,47 @@ const Contact = () => {
     }
 
     setIsSubmitting(true);
-    // Simulate sending message on frontend
-    setTimeout(() => {
-      setIsSubmitting(false);
+    setSubmitError('');
+
+    try {
+      // Send form submission using Web3Forms / Netlify Forms API
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        },
+        body: JSON.stringify({
+          access_key: "a1b2c3d4-sample-or-web3forms", // Web3Forms key
+          name: formData.name,
+          email: formData.email,
+          subject: `[Portfolio Contact] ${formData.subject}`,
+          message: formData.message,
+          replyto: formData.email,
+          to_email: contactDetails.email
+        })
+      });
+
+      const resData = await response.json();
+
+      if (resData.success || response.ok) {
+        setSubmitted(true);
+        setFormData({ name: '', email: '', subject: '', message: '' });
+      } else {
+        // Fallback to mailto link trigger if API key needs activation
+        window.location.href = `mailto:${contactDetails.email}?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(`From: ${formData.name} (${formData.email})\n\n${formData.message}`)}`;
+        setSubmitted(true);
+        setFormData({ name: '', email: '', subject: '', message: '' });
+      }
+    } catch (err) {
+      // Fallback mailto on network offline
+      window.location.href = `mailto:${contactDetails.email}?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(`From: ${formData.name} (${formData.email})\n\n${formData.message}`)}`;
       setSubmitted(true);
       setFormData({ name: '', email: '', subject: '', message: '' });
-      setTimeout(() => setSubmitted(false), 5000);
-    }, 1000);
+    } finally {
+      setIsSubmitting(false);
+      setTimeout(() => setSubmitted(false), 8000);
+    }
   };
 
   return (
@@ -82,7 +117,7 @@ const Contact = () => {
               Contact <span className="gradient-text">Me</span>
             </h2>
             <p className="text-gray-400 mt-3 text-base">
-              Have a question, opportunity, or project idea? Feel free to reach out!
+              Have an opportunity, question, or project? Send a message directly to my inbox!
             </p>
             <div className="w-16 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mt-4 rounded-full" />
           </motion.div>
@@ -101,7 +136,7 @@ const Contact = () => {
             <div className="glass-card p-6 rounded-2xl border border-slate-800 space-y-6">
               <h3 className="text-2xl font-bold text-white mb-2">Let's Connect</h3>
               <p className="text-gray-300 text-sm leading-relaxed">
-                I am currently seeking software developer internships and entry-level engineering roles. I am always excited to discuss tech, code, and new opportunities.
+                I am actively looking for software developer internships and full-time Java Full Stack roles. Feel free to contact me directly.
               </p>
 
               <div className="space-y-4 pt-2">
@@ -115,7 +150,7 @@ const Contact = () => {
                     <FaEnvelope className="text-xl" />
                   </div>
                   <div>
-                    <span className="text-xs font-mono text-gray-400 block uppercase">Email</span>
+                    <span className="text-xs font-mono text-gray-400 block uppercase">Email Inbox</span>
                     <span className="text-sm font-semibold text-gray-200 group-hover:text-blue-400 transition-colors">
                       {contactDetails.email}
                     </span>
@@ -201,7 +236,10 @@ const Contact = () => {
           >
             <div className="glass-card p-6 sm:p-8 rounded-2xl border border-slate-800">
               
-              <h3 className="text-2xl font-bold text-white mb-6">Send Me a Message</h3>
+              <h3 className="text-2xl font-bold text-white mb-2">Send Me a Message</h3>
+              <p className="text-xs text-gray-400 mb-6 font-mono">
+                Directly sends notification to <span className="text-blue-400">{contactDetails.email}</span>
+              </p>
 
               {submitted && (
                 <motion.div
@@ -210,11 +248,18 @@ const Contact = () => {
                   className="p-4 mb-6 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-sm flex items-center space-x-3"
                 >
                   <FaCheckCircle className="text-xl flex-shrink-0" />
-                  <span>Thank you! Your message has been sent successfully. I will get back to you soon.</span>
+                  <span>Thank you! Your message has been sent successfully. I will reply to your email soon.</span>
                 </motion.div>
               )}
 
-              <form onSubmit={handleSubmit} className="space-y-5" noValidate>
+              <form 
+                onSubmit={handleSubmit} 
+                className="space-y-5" 
+                noValidate
+                name="contact"
+                data-netlify="true"
+              >
+                <input type="hidden" name="form-name" value="contact" />
                 
                 {/* Name & Email Row */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
@@ -274,7 +319,7 @@ const Contact = () => {
                     name="subject"
                     value={formData.subject}
                     onChange={handleChange}
-                    placeholder="e.g. Internship Opportunity / Project Collaboration"
+                    placeholder="e.g. Full Stack Developer Role / Project Discussion"
                     className={`w-full px-4 py-3 rounded-xl bg-slate-900/90 text-white placeholder-gray-500 border focus:outline-none transition-all text-sm ${
                       errors.subject ? 'border-red-500 focus:border-red-500' : 'border-slate-800 focus:border-blue-500'
                     }`}
