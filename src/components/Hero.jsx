@@ -12,13 +12,6 @@ const Hero = () => {
     }
   };
 
-  const handleDownloadResume = () => {
-    // Downloads placeholder resume or opens resume viewer
-    const link = document.createElement('a');
-    link.href = '#';
-    link.setAttribute('download', 'Abhishek_Kirkale_Resume.pdf');
-    alert('Resume download initiated! Update this link in Hero.jsx with your actual PDF resume file.');
-  };
 
   return (
     <section id="home" className="relative min-h-screen pt-28 pb-16 flex items-center bg-grid-pattern overflow-hidden">
@@ -76,13 +69,14 @@ const Hero = () => {
                 <span>Contact Me</span>
               </a>
 
-              <button
-                onClick={handleDownloadResume}
-                className="inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-gradient-to-r from-purple-600/20 to-pink-600/20 hover:from-purple-600/30 hover:to-pink-600/30 text-purple-300 border border-purple-500/30 hover:border-purple-500/50 font-semibold text-sm transition-all duration-300 hover:-translate-y-0.5 cursor-pointer"
+              <a
+                href="https://drive.google.com/uc?export=download&id=1YVWFxJsCmom1s3Ao8W262-H8E2nRICog"
+                download="Abhishek_Kirkale_Resume.pdf"
+                className="inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-gradient-to-r from-purple-600/20 to-pink-600/20 hover:from-purple-600/30 hover:to-pink-600/30 text-purple-300 border border-purple-500/30 hover:border-purple-500/50 font-semibold text-sm transition-all duration-300 hover:-translate-y-0.5"
               >
                 <FaDownload className="mr-2 text-xs" />
-                <span>Resume</span>
-              </button>
+                <span>Download Resume</span>
+              </a>
             </div>
 
             {/* Social Links */}
