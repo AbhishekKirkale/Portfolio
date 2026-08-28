@@ -7,7 +7,7 @@ export const contactDetails = {
   email: 'abhishekkirkale9@gmail.com',
   phone: '+91 76666 40720',
   github: 'https://github.com/AbhishekKirkale',
-  linkedin: 'https://linkedin.com/in/abhishekkirkale',
+  linkedin: 'https://www.linkedin.com/in/abhishek-kirkale-3ba90b295/',
   location: 'Pune / Maharashtra, India'
 };
 
