@@ -1,34 +1,59 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaGraduationCap, FaUniversity, FaCalendarAlt, FaAward, FaBookReader } from 'react-icons/fa';
+import { FaGraduationCap, FaUniversity, FaCalendarAlt, FaAward, FaSchool } from 'react-icons/fa';
 
 const educationTimeline = [
   {
     degree: 'Master of Computer Applications (MCA)',
     status: 'Currently Pursuing',
     badgeColor: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30',
-    college: 'Your College / Institution Name (Update in Education.jsx)',
-    university: 'Affiliated University Name (Update in Education.jsx)',
-    period: '2024 - 2026 (Expected)',
-    score: 'Current CGPA / Percentage Placeholder',
+    college: 'Savitribai Phule Pune University',
+    university: 'Pune, Maharashtra',
+    period: '2025 - 2027',
+    score: 'Pursuing Degree',
     highlights: [
-      'Focusing on Advanced Java, Web Development, Object-Oriented Software Design, and Data Structures.',
-      'Actively engaging in software development assignments and technical project builds.',
-      'Participating in developer workshops and technology learning initiatives.'
+      'Specializing in Java Full Stack Web Development, Cloud Computing, and Software Engineering.',
+      'Proficient in Node.js, Express.js, MongoDB, React.js, Python, and Java through academic and project work.',
+      'Focusing on Object-Oriented System Design, Database Systems, and UI/UX Principles.'
     ]
   },
   {
     degree: 'Bachelor of Computer Applications (BCA)',
     status: 'Completed',
     badgeColor: 'bg-blue-500/10 text-blue-400 border-blue-500/30',
-    college: 'SMT. Meherbanu College Of Science and Commerce',
-    university: 'Akola, Maharashtra',
+    college: 'SMT. Meherbanu College of Science and Commerce',
+    university: 'Sant Gadge Baba Amravati University (SGBAU), Akola',
     period: '2021 - 2024',
-    score: 'Completed Degree',
+    score: '60.29%',
     highlights: [
       'Graduated with Bachelor of Computer Applications (BCA).',
-      'Studied core computer application topics including C/C++, Java, Web Development, Database Management Systems (DBMS), and Software Engineering.',
-      'Developed practical software projects and gained strong logical foundation.'
+      'Studied core computer fundamentals, Database Management Systems (DBMS), C/C++, Java, and Web Development.',
+      'Developed practical software and database management projects.'
+    ]
+  },
+  {
+    degree: 'Higher Secondary Certificate (HSC)',
+    status: 'Completed',
+    badgeColor: 'bg-purple-500/10 text-purple-400 border-purple-500/30',
+    college: 'B. N. College of Arts and Science',
+    university: 'Maharashtra State Board',
+    period: '2021',
+    score: '72.00%',
+    highlights: [
+      'Completed Higher Secondary Certificate in Science Stream.',
+      'Built analytical logic in Physics, Chemistry, and Mathematics.'
+    ]
+  },
+  {
+    degree: 'Secondary School Certificate (SSC)',
+    status: 'Completed',
+    badgeColor: 'bg-amber-500/10 text-amber-400 border-amber-500/30',
+    college: 'S. L. Shinde Vidyalaya',
+    university: 'Maharashtra State Board',
+    period: '2019',
+    score: '61.60%',
+    highlights: [
+      'Completed Secondary School Certificate with strong foundational studies.'
     ]
   }
 ];
@@ -47,13 +72,13 @@ const Education = () => {
             transition={{ duration: 0.5 }}
           >
             <span className="text-emerald-400 font-mono text-sm tracking-wider uppercase bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20">
-              Academic Background
+              Academic Qualifications
             </span>
             <h2 className="text-3xl sm:text-4xl font-bold text-white mt-4 tracking-tight">
-              Education & <span className="gradient-text">Qualifications</span>
+              Education & <span className="gradient-text">Journey</span>
             </h2>
             <p className="text-gray-400 mt-3 text-base">
-              My academic journey and computer application studies.
+              My complete academic trajectory from school education to Master of Computer Applications (MCA).
             </p>
             <div className="w-16 h-1 bg-gradient-to-r from-emerald-500 to-teal-500 mx-auto mt-4 rounded-full" />
           </motion.div>
@@ -63,7 +88,7 @@ const Education = () => {
         <div className="max-w-4xl mx-auto space-y-8 relative">
           
           {/* Vertical Connecting Line */}
-          <div className="hidden sm:block absolute left-8 top-6 bottom-6 w-0.5 bg-gradient-to-b from-blue-500 via-purple-500 to-slate-800" />
+          <div className="hidden sm:block absolute left-8 top-6 bottom-6 w-0.5 bg-gradient-to-b from-emerald-500 via-blue-500 to-slate-800" />
 
           {educationTimeline.map((item, index) => (
             <motion.div
@@ -71,7 +96,7 @@ const Education = () => {
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.2 }}
+              transition={{ duration: 0.5, delay: index * 0.15 }}
               className="relative pl-0 sm:pl-20"
             >
               {/* Timeline Icon Node */}
@@ -102,7 +127,7 @@ const Education = () => {
                   <div className="flex items-start space-x-3 text-gray-300 text-sm">
                     <FaUniversity className="text-purple-400 mt-1 flex-shrink-0" />
                     <div>
-                      <span className="text-gray-400 text-xs block font-mono">COLLEGE / UNIVERSITY</span>
+                      <span className="text-gray-400 text-xs block font-mono">INSTITUTION / BOARD</span>
                       <span className="font-medium text-white">{item.college}</span>
                       <span className="text-xs text-gray-400 block">{item.university}</span>
                     </div>
@@ -111,7 +136,7 @@ const Education = () => {
                   <div className="flex items-start space-x-3 text-gray-300 text-sm">
                     <FaAward className="text-amber-400 mt-1 flex-shrink-0" />
                     <div>
-                      <span className="text-gray-400 text-xs block font-mono">ACADEMIC SCORE</span>
+                      <span className="text-gray-400 text-xs block font-mono">MARKS / PERCENTAGE</span>
                       <span className="font-semibold text-amber-300">{item.score}</span>
                     </div>
                   </div>
@@ -119,7 +144,7 @@ const Education = () => {
 
                 {/* Highlights */}
                 <div className="space-y-2 pt-2 border-t border-slate-800/60">
-                  <span className="text-xs font-mono text-gray-400 uppercase tracking-wider block mb-2">Key Highlights:</span>
+                  <span className="text-xs font-mono text-gray-400 uppercase tracking-wider block mb-2">Highlights:</span>
                   {item.highlights.map((point, pIdx) => (
                     <div key={pIdx} className="flex items-start space-x-2 text-sm text-gray-300">
                       <span className="text-blue-400 mt-1">▸</span>

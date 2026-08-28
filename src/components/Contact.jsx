@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FaGithub, FaLinkedin, FaEnvelope, FaPaperPlane, FaMapMarkerAlt, FaCheckCircle, FaExclamationCircle } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaEnvelope, FaPhoneAlt, FaPaperPlane, FaMapMarkerAlt, FaCheckCircle, FaExclamationCircle } from 'react-icons/fa';
 
 // Contact & Social links centralized for easy modification
 export const contactDetails = {
-  email: 'abhishekkirkale@gmail.com',
+  email: 'abhishekkirkale9@gmail.com',
+  phone: '+91 76666 40720',
   github: 'https://github.com/AbhishekKirkale',
   linkedin: 'https://linkedin.com/in/abhishekkirkale',
-  location: 'Maharashtra, India'
+  location: 'Pune / Maharashtra, India'
 };
 
 const Contact = () => {
@@ -117,6 +118,22 @@ const Contact = () => {
                     <span className="text-xs font-mono text-gray-400 block uppercase">Email</span>
                     <span className="text-sm font-semibold text-gray-200 group-hover:text-blue-400 transition-colors">
                       {contactDetails.email}
+                    </span>
+                  </div>
+                </a>
+
+                {/* Phone Info */}
+                <a
+                  href={`tel:${contactDetails.phone.replace(/\s+/g, '')}`}
+                  className="flex items-center space-x-4 p-4 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-emerald-500/40 hover:bg-slate-800/60 transition-all group"
+                >
+                  <div className="p-3 rounded-lg bg-emerald-500/10 text-emerald-400 group-hover:scale-110 transition-transform">
+                    <FaPhoneAlt className="text-xl" />
+                  </div>
+                  <div>
+                    <span className="text-xs font-mono text-gray-400 block uppercase">Phone</span>
+                    <span className="text-sm font-semibold text-gray-200 group-hover:text-emerald-400 transition-colors">
+                      {contactDetails.phone}
                     </span>
                   </div>
                 </a>

@@ -1,16 +1,18 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaGithub, FaExternalLinkAlt, FaBook, FaShoppingBag, FaImage, FaCode } from 'react-icons/fa';
+import { FaGithub, FaExternalLinkAlt, FaBook, FaShoppingBag, FaImage, FaCode, FaUsers, FaReceipt } from 'react-icons/fa';
 import { projectsData } from '../data/projects';
 
 const getProjectIcon = (iconName) => {
   switch (iconName) {
+    case 'users':
+      return <FaUsers className="text-4xl text-blue-400" />;
     case 'book-open':
-      return <FaBook className="text-4xl text-blue-400" />;
+      return <FaBook className="text-4xl text-purple-400" />;
+    case 'receipt':
+      return <FaReceipt className="text-4xl text-emerald-400" />;
     case 'shopping-bag':
-      return <FaShoppingBag className="text-4xl text-purple-400" />;
-    case 'image':
-      return <FaImage className="text-4xl text-emerald-400" />;
+      return <FaShoppingBag className="text-4xl text-amber-400" />;
     default:
       return <FaCode className="text-4xl text-blue-400" />;
   }

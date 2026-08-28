@@ -104,7 +104,7 @@ const Hero = () => {
               </a>
 
               <a
-                href="mailto:abhishekkirkale@gmail.com"
+                href="mailto:abhishekkirkale9@gmail.com"
                 className="p-2.5 rounded-xl bg-slate-800/60 hover:bg-slate-700/80 text-gray-400 hover:text-rose-400 border border-slate-700/60 transition-all hover:scale-110"
                 aria-label="Email Abhishek"
               >
@@ -148,22 +148,19 @@ const Hero = () => {
                 <div className="font-mono text-xs sm:text-sm text-left leading-relaxed space-y-2 text-gray-300 overflow-x-auto py-2">
                   <p className="text-purple-400"><span className="text-blue-400">const</span> developer = &#123;</p>
                   <p className="pl-4">
-                    name: <span className="text-emerald-400">'Abhishek Kirkale'</span>,
+                    name: <span className="text-emerald-400">'Abhishek B. Kirkale'</span>,
                   </p>
                   <p className="pl-4">
-                    degree: <span className="text-emerald-400">'MCA (Master of Computer Applications)'</span>,
+                    education: <span className="text-emerald-400">'MCA @ Savitribai Phule Pune University'</span>,
                   </p>
                   <p className="pl-4">
-                    role: <span className="text-emerald-400">'Aspiring Software Developer'</span>,
+                    targetRole: <span className="text-emerald-400">'Java Full Stack / Software Developer'</span>,
                   </p>
                   <p className="pl-4">
-                    primaryFocus: [<span className="text-amber-300">'Java'</span>, <span className="text-amber-300">'React.js'</span>, <span className="text-amber-300">'Python'</span>],
+                    stack: [<span className="text-amber-300">'Java'</span>, <span className="text-amber-300">'Node.js'</span>, <span className="text-amber-300">'React.js'</span>, <span className="text-amber-300">'MongoDB'</span>],
                   </p>
                   <p className="pl-4">
-                    seeking: <span className="text-emerald-400">'Software Internships & Developer Roles'</span>,
-                  </p>
-                  <p className="pl-4">
-                    learningStatus: <span className="text-blue-300">true</span>,
+                    openToWork: <span className="text-blue-300">true</span>,
                   </p>
                   <p className="pl-4 text-gray-400">// Always open to collaborating on new projects</p>
                   <p className="text-purple-400">&#125;;</p>

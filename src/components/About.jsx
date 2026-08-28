@@ -1,28 +1,29 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaGraduationCap, FaCode, FaBullseye, FaBookOpen } from 'react-icons/fa';
+import { FaGraduationCap, FaCode, FaBullseye, FaBookOpen, FaGlobe, FaUserCheck } from 'react-icons/fa';
+import { professionalSkills, languagesSpoken } from '../data/skills';
 
 const highlightCards = [
   {
     icon: FaGraduationCap,
-    title: 'Academic Focus',
-    description: 'Pursuing Master of Computer Applications (MCA), focusing on core software engineering principles and computer science fundamentals.',
+    title: 'Academic Pursuits',
+    description: 'MCA Student at Savitribai Phule Pune University (2025–2027) with a BCA degree from SMT. Meherbanu College (SGBAU).',
     color: 'from-blue-500/20 to-cyan-500/20',
     borderColor: 'border-blue-500/30',
     iconColor: 'text-blue-400'
   },
   {
     icon: FaCode,
-    title: 'Technical Interests',
-    description: 'Passionate about object-oriented programming in Java, modern frontend development with React, and python applications.',
+    title: 'Core Technical Focus',
+    description: 'Proficient in Java, Full Stack Web Development (Node.js, Express, MongoDB, React), Python, and UI/UX Design principles.',
     color: 'from-purple-500/20 to-pink-500/20',
     borderColor: 'border-purple-500/30',
     iconColor: 'text-purple-400'
   },
   {
     icon: FaBullseye,
-    title: 'Career Aspirations',
-    description: 'Actively seeking software developer internships and entry-level software engineering roles to contribute and grow.',
+    title: 'Career Target',
+    description: 'Eager to contribute as a Java Full Stack Developer, Web Developer, Frontend / Backend Developer, or Software Engineering Intern.',
     color: 'from-emerald-500/20 to-teal-500/20',
     borderColor: 'border-emerald-500/30',
     iconColor: 'text-emerald-400'
@@ -53,37 +54,65 @@ const About = () => {
         </div>
 
         {/* Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
           
           {/* Main Narrative Card */}
           <motion.div 
-            className="lg:col-span-7 glass-card p-8 rounded-2xl border border-slate-800 relative"
+            className="lg:col-span-7 glass-card p-8 rounded-2xl border border-slate-800 relative space-y-6"
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <div className="flex items-center space-x-3 mb-6">
+            <div className="flex items-center space-x-3 mb-2">
               <div className="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-blue-400">
                 <FaBookOpen className="text-lg" />
               </div>
-              <h3 className="text-2xl font-bold text-white">Continuous Learner & Developer</h3>
+              <h3 className="text-2xl font-bold text-white">Professional Objective</h3>
             </div>
 
-            <div className="space-y-4 text-gray-300 leading-relaxed text-base">
-              <p>
-                Hello! I am <strong className="text-white">Abhishek Kirkale</strong>, currently pursuing my Master of Computer Applications (MCA). My journey in computer science is driven by a deep fascination with how software powers modern digital experiences.
-              </p>
-              <p>
-                My primary technical focus lies in <span className="text-blue-400 font-medium">Java programming</span> and <span className="text-purple-400 font-medium">Web Development</span> using React.js, JavaScript, HTML, and CSS. I enjoy solving algorithmic challenges, creating user-friendly web layouts, and crafting clean, maintainable code.
-              </p>
-              <p>
-                As a dedicated student, I believe in practical hands-on building. I regularly work on personal projects to strengthen my understanding of core software development concepts, version control with Git, and database fundamentals.
-              </p>
-              <p>
-                I am actively preparing for software development opportunities where I can apply my foundation, collaborate with experienced engineering teams, and grow into a versatile software developer.
-              </p>
+            <p className="text-gray-300 text-base leading-relaxed">
+              Motivated and detail-oriented <strong className="text-white">MCA student</strong> at <strong className="text-blue-400">Savitribai Phule Pune University</strong> with a strong foundation in Java, Full Stack Web Development, and UI/UX principles.
+            </p>
+
+            <p className="text-gray-300 text-base leading-relaxed">
+              Proficient in <span className="text-purple-400 font-medium">Java, HTML, CSS, JavaScript, Node.js, Express.js, and MongoDB</span> through practical academic and full-stack projects. Eager to apply technical and problem-solving skills in a dynamic environment while contributing as a <strong className="text-white">Java Full Stack Developer, Web Developer, Frontend Developer, Backend Developer, or Software Developer</strong>.
+            </p>
+
+            {/* Professional Skills Badges */}
+            <div className="pt-4 border-t border-slate-800">
+              <h4 className="text-xs font-mono uppercase text-gray-400 tracking-wider mb-3 flex items-center gap-2">
+                <FaUserCheck className="text-blue-400" /> Professional Competencies
+              </h4>
+              <div className="flex flex-wrap gap-2">
+                {professionalSkills.map((skill) => (
+                  <span
+                    key={skill}
+                    className="text-xs font-medium text-blue-300 bg-blue-500/10 border border-blue-500/20 px-3 py-1.5 rounded-lg"
+                  >
+                    ✓ {skill}
+                  </span>
+                ))}
+              </div>
             </div>
+
+            {/* Languages Spoken */}
+            <div className="pt-4 border-t border-slate-800">
+              <h4 className="text-xs font-mono uppercase text-gray-400 tracking-wider mb-3 flex items-center gap-2">
+                <FaGlobe className="text-purple-400" /> Languages Spoken
+              </h4>
+              <div className="flex flex-wrap gap-3">
+                {languagesSpoken.map((lang) => (
+                  <span
+                    key={lang}
+                    className="text-xs font-mono text-gray-200 bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-800"
+                  >
+                    🌐 {lang}
+                  </span>
+                ))}
+              </div>
+            </div>
+
           </motion.div>
 
           {/* Right Highlights Grid */}
