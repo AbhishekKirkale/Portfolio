@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { HiMenuAlt3, HiX } from 'react-icons/hi';
-import { FaCode, FaSun, FaMoon } from 'react-icons/fa';
+import { FaCode } from 'react-icons/fa';
 
 const navLinks = [
   { name: 'Home', href: '#home' },
@@ -17,28 +17,6 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
-  
-  // Theme state: dark mode active by default
-  const [darkMode, setDarkMode] = useState(() => {
-    if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem('theme');
-      if (saved) return saved === 'dark';
-      return true; // default dark mode
-    }
-    return true;
-  });
-
-  useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add('dark');
-      document.documentElement.classList.remove('light');
-      localStorage.setItem('theme', 'dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-      document.documentElement.classList.add('light');
-      localStorage.setItem('theme', 'light');
-    }
-  }, [darkMode]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -75,7 +53,7 @@ const Navbar = () => {
   };
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'glass-nav py-3 shadow-lg' : 'bg-transparent py-5'}`}>
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'glass-nav py-3 shadow-lg shadow-black/40' : 'bg-transparent py-5'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           
@@ -90,7 +68,7 @@ const Navbar = () => {
               <FaCode className="text-xl" />
             </div>
             <div className="flex flex-col">
-              <span className="text-lg font-bold tracking-tight text-white dark:text-white light:text-slate-900 group-hover:text-blue-500 transition-colors">
+              <span className="text-lg font-bold tracking-tight text-white group-hover:text-blue-400 transition-colors">
                 Abhishek<span className="text-blue-500">.</span>
               </span>
               <span className="text-[10px] uppercase tracking-widest text-gray-400 font-mono">
@@ -99,72 +77,43 @@ const Navbar = () => {
             </div>
           </a>
 
-          {/* Right Navigation & Controls */}
-          <div className="flex items-center space-x-2 sm:space-x-4">
-            
-            {/* Desktop Nav Links */}
-            <nav className="hidden md:flex items-center space-x-1 lg:space-x-2">
-              {navLinks.map((link) => {
-                const isActive = activeSection === link.href.substring(1);
-                return (
-                  <a
-                    key={link.name}
-                    href={link.href}
-                    onClick={(e) => handleNavClick(e, link.href)}
-                    className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 relative ${
-                      isActive 
-                        ? 'text-blue-400 bg-blue-500/10 border border-blue-500/30' 
-                        : 'text-gray-300 hover:text-white hover:bg-white/5'
-                    }`}
-                  >
-                    {link.name}
-                    {isActive && (
-                      <motion.div
-                        layoutId="activeIndicator"
-                        className="absolute bottom-0 left-2 right-2 h-0.5 bg-blue-500 rounded-full"
-                        transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                      />
-                    )}
-                  </a>
-                );
-              })}
-            </nav>
-
-            {/* Theme Toggle Button (Sun / Moon) */}
-            <button
-              onClick={() => setDarkMode(!darkMode)}
-              className="p-2.5 rounded-xl bg-slate-800/90 dark:bg-slate-800/90 border border-slate-700 text-amber-400 hover:scale-110 active:scale-95 transition-all cursor-pointer shadow-md"
-              aria-label="Toggle Theme"
-              title={darkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
-            >
-              <AnimatePresence mode="wait" initial={false}>
-                <motion.div
-                  key={darkMode ? 'dark' : 'light'}
-                  initial={{ y: -10, opacity: 0, rotate: -90 }}
-                  animate={{ y: 0, opacity: 1, rotate: 0 }}
-                  exit={{ y: 10, opacity: 0, rotate: 90 }}
-                  transition={{ duration: 0.2 }}
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center space-x-1 lg:space-x-2">
+            {navLinks.map((link) => {
+              const isActive = activeSection === link.href.substring(1);
+              return (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  onClick={(e) => handleNavClick(e, link.href)}
+                  className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 relative ${
+                    isActive 
+                      ? 'text-white bg-blue-500/10 border border-blue-500/30' 
+                      : 'text-gray-300 hover:text-white hover:bg-white/5'
+                  }`}
                 >
-                  {darkMode ? (
-                    <FaSun className="text-lg text-amber-400" />
-                  ) : (
-                    <FaMoon className="text-lg text-indigo-400" />
+                  {link.name}
+                  {isActive && (
+                    <motion.div
+                      layoutId="activeIndicator"
+                      className="absolute bottom-0 left-2 right-2 h-0.5 bg-blue-500 rounded-full"
+                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                    />
                   )}
-                </motion.div>
-              </AnimatePresence>
+                </a>
+              );
+            })}
+          </nav>
+
+          {/* Mobile Menu Button */}
+          <div className="md:hidden flex items-center">
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="p-2.5 rounded-xl bg-slate-800/80 text-gray-200 hover:text-white hover:bg-slate-700/80 border border-slate-700 focus:outline-none transition-colors"
+              aria-label={isOpen ? "Close menu" : "Open menu"}
+            >
+              {isOpen ? <HiX className="w-6 h-6" /> : <HiMenuAlt3 className="w-6 h-6" />}
             </button>
-
-            {/* Mobile Menu Toggle Button */}
-            <div className="md:hidden flex items-center">
-              <button
-                onClick={() => setIsOpen(!isOpen)}
-                className="p-2.5 rounded-xl bg-slate-800/80 text-gray-200 hover:text-white hover:bg-slate-700/80 border border-slate-700 focus:outline-none transition-colors"
-                aria-label={isOpen ? "Close menu" : "Open menu"}
-              >
-                {isOpen ? <HiX className="w-6 h-6" /> : <HiMenuAlt3 className="w-6 h-6" />}
-              </button>
-            </div>
-
           </div>
 
         </div>
