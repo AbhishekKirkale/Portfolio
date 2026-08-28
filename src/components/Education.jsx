@@ -18,16 +18,17 @@ const educationTimeline = [
     ]
   },
   {
-    degree: 'Bachelor Degree (BCA / B.Sc / Equivalent)',
+    degree: 'Bachelor of Computer Applications (BCA)',
     status: 'Completed',
     badgeColor: 'bg-blue-500/10 text-blue-400 border-blue-500/30',
-    college: 'Undergraduate College Name (Update in Education.jsx)',
-    university: 'Undergraduate University Name (Update in Education.jsx)',
-    period: 'Year - Year',
-    score: 'Graduation Percentage / CGPA Placeholder',
+    college: 'SMT. Meherbanu College Of Science and Commerce',
+    university: 'Akola, Maharashtra',
+    period: '2021 - 2024',
+    score: 'Completed Degree',
     highlights: [
-      'Studied core computer fundamentals, database management systems (DBMS), and programming logic.',
-      'Completed academic projects using modern programming languages.'
+      'Graduated with Bachelor of Computer Applications (BCA).',
+      'Studied core computer application topics including C/C++, Java, Web Development, Database Management Systems (DBMS), and Software Engineering.',
+      'Developed practical software projects and gained strong logical foundation.'
     ]
   }
 ];
