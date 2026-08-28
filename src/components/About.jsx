@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { FaGraduationCap, FaCode, FaBullseye, FaBookOpen, FaGlobe, FaUserCheck } from 'react-icons/fa';
 import { professionalSkills, languagesSpoken } from '../data/skills';
+import profileImg from '../assets/profile.jpg';
 
 const highlightCards = [
   {
@@ -58,17 +59,22 @@ const About = () => {
           
           {/* Main Narrative Card */}
           <motion.div 
-            className="lg:col-span-7 glass-card p-8 rounded-2xl border border-slate-800 relative space-y-6"
+            className="lg:col-span-7 glass-card p-6 sm:p-8 rounded-2xl border border-slate-800 relative space-y-6"
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <div className="flex items-center space-x-3 mb-2">
-              <div className="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-blue-400">
-                <FaBookOpen className="text-lg" />
+            <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-4 pb-4 border-b border-slate-800">
+              <img
+                src={profileImg}
+                alt="Abhishek Baburao Kirkale"
+                className="w-20 h-20 rounded-2xl object-cover border-2 border-blue-500/40 shadow-md"
+              />
+              <div>
+                <h3 className="text-2xl font-bold text-white">Abhishek Baburao Kirkale</h3>
+                <span className="text-xs font-mono text-blue-400 block mt-0.5">MCA Student & Full Stack Developer</span>
               </div>
-              <h3 className="text-2xl font-bold text-white">Professional Objective</h3>
             </div>
 
             <p className="text-gray-300 text-base leading-relaxed">

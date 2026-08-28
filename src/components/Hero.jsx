@@ -1,7 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaGithub, FaLinkedin, FaEnvelope, FaDownload, FaArrowRight, FaCodeBranch, FaTerminal } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaEnvelope, FaDownload, FaArrowRight, FaCodeBranch, FaTerminal, FaCheckCircle } from 'react-icons/fa';
 import { HiOutlineSparkles } from 'react-icons/hi';
+import profileImg from '../assets/profile.jpg';
 
 const Hero = () => {
   const handleScrollTo = (e, targetId) => {
@@ -11,7 +12,6 @@ const Hero = () => {
       element.scrollIntoView({ behavior: 'smooth' });
     }
   };
-
 
   return (
     <section id="home" className="relative min-h-screen pt-28 pb-16 flex items-center bg-grid-pattern overflow-hidden">
@@ -32,7 +32,7 @@ const Hero = () => {
             {/* Status Pill */}
             <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs sm:text-sm font-medium w-fit mb-6 shadow-sm">
               <HiOutlineSparkles className="text-blue-400 text-base" />
-              <span>Available for Software Developer Internships</span>
+              <span>Open to Software & Full Stack Developer Roles</span>
             </div>
 
             {/* Main Greeting */}
@@ -42,12 +42,12 @@ const Hero = () => {
 
             {/* Sub-headline */}
             <h2 className="text-xl sm:text-2xl text-blue-400 font-semibold mb-6 flex items-center gap-2">
-              <span className="text-gray-400 font-normal">|</span> MCA Student & Aspiring Software Developer
+              <span className="text-gray-400 font-normal">|</span> MCA Student & Java Full Stack Developer
             </h2>
 
             {/* Introduction Bio */}
             <p className="text-gray-300 text-base sm:text-lg leading-relaxed mb-8 max-w-2xl font-normal">
-              I am a passionate Master of Computer Applications (MCA) student dedicated to building clean, high-performance web applications and robust software solutions. Driven by curiosity, I continuously learn modern programming paradigms, frontend frameworks, and backend technologies.
+              Master of Computer Applications (MCA) student at Savitribai Phule Pune University. Dedicated to building scalable web applications, REST APIs, and modern user interfaces with <span className="text-blue-400 font-medium">Java, Node.js, React.js, Express.js,</span> and <span className="text-purple-400 font-medium">MongoDB</span>.
             </p>
 
             {/* Action Buttons */}
@@ -114,7 +114,7 @@ const Hero = () => {
 
           </motion.div>
 
-          {/* Right Column - Developer Visual Card */}
+          {/* Right Column - Profile Image & Developer Window */}
           <motion.div 
             className="lg:col-span-5 flex justify-center"
             initial={{ opacity: 0, scale: 0.95 }}
@@ -122,58 +122,52 @@ const Hero = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <div className="relative w-full max-w-md">
-              {/* Outer Card Glow */}
-              <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl blur-xl opacity-30 animate-pulse"></div>
+              {/* Outer Glow */}
+              <div className="absolute -inset-1.5 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 rounded-3xl blur-xl opacity-35 animate-pulse"></div>
 
-              {/* Developer Code Window Mockup */}
-              <div className="relative rounded-2xl glass-card p-6 shadow-2xl border border-slate-800">
+              {/* Main Profile Card Container */}
+              <div className="relative rounded-2xl glass-card p-6 shadow-2xl border border-slate-800 flex flex-col items-center">
                 
-                {/* Window Controls Header */}
-                <div className="flex items-center justify-between pb-4 mb-4 border-b border-slate-800/80">
-                  <div className="flex items-center space-x-2">
-                    <span className="w-3 h-3 rounded-full bg-red-500/80 inline-block"></span>
-                    <span className="w-3 h-3 rounded-full bg-yellow-500/80 inline-block"></span>
-                    <span className="w-3 h-3 rounded-full bg-green-500/80 inline-block"></span>
+                {/* Profile Image with Gradient Ring */}
+                <div className="relative mb-6 group">
+                  <div className="w-48 h-48 sm:w-56 sm:h-56 rounded-2xl p-1 bg-gradient-to-tr from-blue-500 via-purple-500 to-pink-500 shadow-xl overflow-hidden">
+                    <img 
+                      src={profileImg} 
+                      alt="Abhishek Baburao Kirkale" 
+                      className="w-full h-full object-cover rounded-[14px] group-hover:scale-105 transition-transform duration-500"
+                    />
                   </div>
-                  <div className="flex items-center text-xs text-gray-400 font-mono space-x-1">
-                    <FaTerminal className="text-blue-400" />
-                    <span>developer.js</span>
-                  </div>
-                  <div className="text-xs text-gray-400 font-mono">
-                    <FaCodeBranch />
+
+                  {/* Verification Floating Badge */}
+                  <div className="absolute -bottom-2 -right-2 bg-slate-900/95 backdrop-blur-md px-3 py-1.5 rounded-xl border border-emerald-500/40 text-emerald-400 text-xs font-semibold flex items-center space-x-1.5 shadow-lg">
+                    <FaCheckCircle className="text-emerald-400 text-xs" />
+                    <span>Open to Roles</span>
                   </div>
                 </div>
 
-                {/* Simulated Code Body */}
-                <div className="font-mono text-xs sm:text-sm text-left leading-relaxed space-y-2 text-gray-300 overflow-x-auto py-2">
+                {/* Developer Code Box */}
+                <div className="w-full rounded-xl bg-slate-900/90 border border-slate-800 p-4 font-mono text-xs text-left leading-relaxed text-gray-300">
+                  <div className="flex items-center justify-between pb-2 mb-2 border-b border-slate-800 text-[11px] text-gray-400">
+                    <span className="flex items-center space-x-1">
+                      <FaTerminal className="text-blue-400" />
+                      <span>abhishek.js</span>
+                    </span>
+                    <span className="text-emerald-400 font-sans text-[10px] bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">
+                      ● Active
+                    </span>
+                  </div>
+
                   <p className="text-purple-400"><span className="text-blue-400">const</span> developer = &#123;</p>
                   <p className="pl-4">
                     name: <span className="text-emerald-400">'Abhishek B. Kirkale'</span>,
                   </p>
                   <p className="pl-4">
-                    education: <span className="text-emerald-400">'MCA @ Savitribai Phule Pune University'</span>,
+                    degree: <span className="text-emerald-400">'MCA @ Savitribai Phule Pune Univ.'</span>,
                   </p>
                   <p className="pl-4">
-                    targetRole: <span className="text-emerald-400">'Java Full Stack / Software Developer'</span>,
+                    stack: [<span className="text-amber-300">'Java'</span>, <span className="text-amber-300">'Node'</span>, <span className="text-amber-300">'React'</span>, <span className="text-amber-300">'Mongo'</span>],
                   </p>
-                  <p className="pl-4">
-                    stack: [<span className="text-amber-300">'Java'</span>, <span className="text-amber-300">'Node.js'</span>, <span className="text-amber-300">'React.js'</span>, <span className="text-amber-300">'MongoDB'</span>],
-                  </p>
-                  <p className="pl-4">
-                    openToWork: <span className="text-blue-300">true</span>,
-                  </p>
-                  <p className="pl-4 text-gray-400">// Always open to collaborating on new projects</p>
                   <p className="text-purple-400">&#125;;</p>
-
-                  <div className="pt-3 border-t border-slate-800/60 mt-3">
-                    <p className="text-blue-400 flex items-center">
-                      <span className="text-green-400 mr-2">❯</span> 
-                      <span>developer.buildFuture()</span>
-                    </p>
-                    <p className="text-emerald-400 font-sans text-xs mt-1 bg-emerald-500/10 p-2 rounded border border-emerald-500/20">
-                      ✓ Ready to build robust, scalable applications.
-                    </p>
-                  </div>
                 </div>
 
               </div>
