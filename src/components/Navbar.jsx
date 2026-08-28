@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { HiMenuAlt3, HiX } from 'react-icons/hi';
 import { FaCode } from 'react-icons/fa';
+import ThemeSwitcher from './ThemeSwitcher';
 
 const navLinks = [
   { name: 'Home', href: '#home' },
@@ -53,7 +54,7 @@ const Navbar = () => {
   };
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'glass-nav py-3 shadow-lg shadow-black/40' : 'bg-transparent py-5'}`}>
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'glass-nav py-3 shadow-lg' : 'bg-transparent py-5'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           
@@ -77,43 +78,51 @@ const Navbar = () => {
             </div>
           </a>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-1 lg:space-x-2">
-            {navLinks.map((link) => {
-              const isActive = activeSection === link.href.substring(1);
-              return (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  onClick={(e) => handleNavClick(e, link.href)}
-                  className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 relative ${
-                    isActive 
-                      ? 'text-white bg-blue-500/10 border border-blue-500/30' 
-                      : 'text-gray-300 hover:text-white hover:bg-white/5'
-                  }`}
-                >
-                  {link.name}
-                  {isActive && (
-                    <motion.div
-                      layoutId="activeIndicator"
-                      className="absolute bottom-0 left-2 right-2 h-0.5 bg-blue-500 rounded-full"
-                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                    />
-                  )}
-                </a>
-              );
-            })}
-          </nav>
+          {/* Right Section: Desktop Navigation & Theme Switcher */}
+          <div className="flex items-center space-x-3 sm:space-x-4">
+            
+            {/* Desktop Nav Links */}
+            <nav className="hidden md:flex items-center space-x-1 lg:space-x-2">
+              {navLinks.map((link) => {
+                const isActive = activeSection === link.href.substring(1);
+                return (
+                  <a
+                    key={link.name}
+                    href={link.href}
+                    onClick={(e) => handleNavClick(e, link.href)}
+                    className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 relative ${
+                      isActive 
+                        ? 'text-blue-400 bg-blue-500/10 border border-blue-500/30' 
+                        : 'text-gray-300 hover:text-white hover:bg-white/5'
+                    }`}
+                  >
+                    {link.name}
+                    {isActive && (
+                      <motion.div
+                        layoutId="activeIndicator"
+                        className="absolute bottom-0 left-2 right-2 h-0.5 bg-blue-500 rounded-full"
+                        transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                      />
+                    )}
+                  </a>
+                );
+              })}
+            </nav>
 
-          {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center">
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="p-2.5 rounded-xl bg-slate-800/80 text-gray-200 hover:text-white hover:bg-slate-700/80 border border-slate-700 focus:outline-none transition-colors"
-              aria-label={isOpen ? "Close menu" : "Open menu"}
-            >
-              {isOpen ? <HiX className="w-6 h-6" /> : <HiMenuAlt3 className="w-6 h-6" />}
-            </button>
+            {/* Theme Palette Switcher Dropdown */}
+            <ThemeSwitcher />
+
+            {/* Mobile Menu Button */}
+            <div className="md:hidden flex items-center">
+              <button
+                onClick={() => setIsOpen(!isOpen)}
+                className="p-2.5 rounded-xl bg-slate-800/80 text-gray-200 hover:text-white hover:bg-slate-700/80 border border-slate-700 focus:outline-none transition-colors"
+                aria-label={isOpen ? "Close menu" : "Open menu"}
+              >
+                {isOpen ? <HiX className="w-6 h-6" /> : <HiMenuAlt3 className="w-6 h-6" />}
+              </button>
+            </div>
+
           </div>
 
         </div>

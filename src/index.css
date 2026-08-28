@@ -5,14 +5,124 @@
   html {
     scroll-behavior: smooth;
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    color-scheme: dark;
   }
 
   body {
-    background-color: #0b0f19;
-    color: #e2e8f0;
+    background-color: var(--bg-primary);
+    color: var(--text-main);
     overflow-x: hidden;
+    transition: background-color 0.4s ease, color 0.4s ease;
   }
+}
+
+/* ==========================================================================
+   THEME PALETTES (CSS Variables)
+   ========================================================================== */
+
+/* 1. Dark Blue (Default) */
+:root,
+[data-theme="dark-blue"] {
+  --bg-primary: #0b0f19;
+  --bg-card: rgba(15, 23, 42, 0.75);
+  --bg-nav: rgba(11, 15, 25, 0.88);
+  --text-main: #e2e8f0;
+  --text-muted: #94a3b8;
+  --border-color: rgba(255, 255, 255, 0.08);
+  --accent-from: #3b82f6;
+  --accent-to: #a855f7;
+  --glow-color: rgba(59, 130, 246, 0.15);
+  --grid-line: rgba(255, 255, 255, 0.03);
+  color-scheme: dark;
+}
+
+/* 2. Cyber Emerald */
+[data-theme="cyber-emerald"] {
+  --bg-primary: #041410;
+  --bg-card: rgba(6, 30, 23, 0.75);
+  --bg-nav: rgba(4, 20, 15, 0.88);
+  --text-main: #ecfdf5;
+  --text-muted: #6ee7b7;
+  --border-color: rgba(16, 185, 129, 0.15);
+  --accent-from: #10b981;
+  --accent-to: #06b6d4;
+  --glow-color: rgba(16, 185, 129, 0.18);
+  --grid-line: rgba(16, 185, 129, 0.04);
+  color-scheme: dark;
+}
+
+/* 3. Neon Purple */
+[data-theme="neon-purple"] {
+  --bg-primary: #12081d;
+  --bg-card: rgba(26, 14, 42, 0.75);
+  --bg-nav: rgba(16, 8, 26, 0.88);
+  --text-main: #faf5ff;
+  --text-muted: #c084fc;
+  --border-color: rgba(168, 85, 247, 0.15);
+  --accent-from: #8b5cf6;
+  --accent-to: #ec4899;
+  --glow-color: rgba(168, 85, 247, 0.18);
+  --grid-line: rgba(168, 85, 247, 0.04);
+  color-scheme: dark;
+}
+
+/* 4. Sunset Rose */
+[data-theme="sunset-rose"] {
+  --bg-primary: #1a0a0f;
+  --bg-card: rgba(38, 14, 21, 0.75);
+  --bg-nav: rgba(24, 8, 13, 0.88);
+  --text-main: #fff1f2;
+  --text-muted: #fda4af;
+  --border-color: rgba(244, 63, 94, 0.15);
+  --accent-from: #f43f5e;
+  --accent-to: #f97316;
+  --glow-color: rgba(244, 63, 94, 0.18);
+  --grid-line: rgba(244, 63, 94, 0.04);
+  color-scheme: dark;
+}
+
+/* 5. Clean Light */
+[data-theme="clean-light"] {
+  --bg-primary: #f8fafc;
+  --bg-card: rgba(255, 255, 255, 0.9);
+  --bg-nav: rgba(255, 255, 255, 0.95);
+  --text-main: #0f172a;
+  --text-muted: #475569;
+  --border-color: rgba(0, 0, 0, 0.08);
+  --accent-from: #2563eb;
+  --accent-to: #7c3aed;
+  --glow-color: rgba(37, 99, 235, 0.08);
+  --grid-line: rgba(0, 0, 0, 0.04);
+  color-scheme: light;
+}
+
+/* Utility Classes referencing CSS Variables */
+.bg-grid-pattern {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+}
+
+.glass-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-color);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-nav {
+  background: var(--bg-nav);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border-color);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, var(--accent-from) 0%, var(--accent-to) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 /* Custom Scrollbar */
@@ -20,48 +130,13 @@
   width: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: #0b0f19;
+  background: var(--bg-primary);
 }
 ::-webkit-scrollbar-thumb {
-  background: #1e293b;
+  background: var(--border-color);
   border-radius: 5px;
-  border: 2px solid #0b0f19;
+  border: 2px solid var(--bg-primary);
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #3b82f6;
-}
-
-/* Background Grid Pattern */
-.bg-grid-pattern {
-  background-size: 40px 40px;
-  background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-}
-
-/* Glassmorphism Card Style */
-.glass-card {
-  background: rgba(15, 23, 42, 0.7);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.glass-nav {
-  background: rgba(11, 15, 25, 0.85);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.gradient-text {
-  background: linear-gradient(135deg, #60a5fa 0%, #a855f7 50%, #ec4899 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.gradient-text-blue {
-  background: linear-gradient(135deg, #38bdf8 0%, #3b82f6 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  background: var(--accent-from);
 }
