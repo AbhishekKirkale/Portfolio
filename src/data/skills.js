@@ -10,7 +10,8 @@ import {
   FaNodeJs,
   FaBootstrap,
   FaFigma,
-  FaDatabase
+  FaDatabase,
+  FaRobot
 } from 'react-icons/fa';
 import { 
   SiExpress, 
@@ -18,9 +19,10 @@ import {
   SiMongodb, 
   SiMysql, 
   SiSqlite,
-  SiEclipseide
+  SiEclipseide,
+  SiPostman
 } from 'react-icons/si';
-import { TbBrandVscode } from 'react-icons/tb';
+import { TbBrandVscode, TbBrandOpenai } from 'react-icons/tb';
 
 export const skillCategories = [
   {
@@ -66,14 +68,17 @@ export const skillCategories = [
   },
   {
     id: 'tools',
-    title: 'Tools & Platforms',
-    description: 'Version control, code editors, IDEs, and UI/UX design tools.',
+    title: 'Tools, APIs & AI Tools',
+    description: 'Version control, API testing, IDEs, and AI developer platforms.',
     skills: [
+      { name: 'Postman', icon: SiPostman, color: '#FF6C37', level: 'API Testing' },
+      { name: 'ChatGPT', icon: TbBrandOpenai, color: '#10A37F', level: 'AI Developer' },
+      { name: 'Antigravity', icon: FaRobot, color: '#A855F7', level: 'AI Agent' },
       { name: 'Git', icon: FaGitAlt, color: '#F05032', level: 'Intermediate' },
       { name: 'GitHub', icon: FaGithub, color: '#ffffff', level: 'Intermediate' },
       { name: 'VS Code', icon: TbBrandVscode, color: '#007ACC', level: 'Advanced' },
       { name: 'Eclipse', icon: SiEclipseide, color: '#2C2255', level: 'Intermediate' },
-      { name: 'Figma', icon: FaFigma, color: '#F24E1E', level: 'Basic / UI' },
+      { name: 'Figma', icon: FaFigma, color: '#F24E1E', level: 'UI Design' },
     ],
   },
 ];
